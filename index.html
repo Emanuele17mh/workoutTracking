@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> <!-- Aggiunta per i font -->
+    <title>Tracciamento Allenamenti</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Tracciamento Allenamenti</h1>
+    <button class="nav-btn" id="toggle-scheda">Crea Scheda Personalizzata</button>
+    <button class="nav-btn" id="show-saved-schedules">Schede Salvate</button>
+</header>
+
+<div class="container">
+    <div id="crea-scheda" class="hidden">
+        <div class="form-container">
+            <h2>Crea Scheda</h2>
+            <div class="form-group">
+                <label for="muscle-group">Seleziona Gruppo Muscolare</label>
+                <select id="muscle-group">
+                    <option value="">--Seleziona--</option>
+                    <option value="petto">Petto</option>
+                    <option value="schiena">Schiena</option>
+                    <option value="gambe">Gambe</option>
+                    <option value="braccia">Braccia</option>
+                    <option value="spalle">Spalle</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="exercise">Esercizio</label>
+                <input type="text" id="exercise" placeholder="Inserisci il nome dell'esercizio">
+            </div>
+
+            <div class="form-group">
+                <label for="sets">Serie</label>
+                <input type="number" id="sets" placeholder="Inserisci il numero di serie">
+            </div>
+
+            <div class="form-group">
+                <label for="reps">Ripetizioni</label>
+                <input type="number" id="reps" placeholder="Inserisci il numero di ripetizioni">
+            </div>
+
+            <div class="form-group">
+                <label for="rest">Recupero (in secondi)</label>
+                <input type="number" id="rest" placeholder="Inserisci il tempo di recupero">
+            </div>
+
+            <button class="btn" id="add-exercise">Aggiungi Esercizio</button>
+        </div>
+
+        <div id="personal-schedule" class="scheda-container">
+            <h3>Scheda Personalizzata</h3>
+            <div id="schedule-items"></div>
+            <div class="schedule-buttons"> <!-- Aggiunto un contenitore per i pulsanti -->
+                <button class="clear-btn" id="clear-schedule">Cancella Scheda</button>
+                <button class="btn" id="save-schedule">Salva Scheda</button> <!-- Spostato qui -->
+            </div>
+        </div>
+    </div>
+
+    <div id="saved-schedules" class="hidden">
+        <h2>Schede Salvate</h2>
+        <div id="saved-schedules-list">
+            <!-- Altre schede salvate possono essere aggiunte qui -->
+        </div>
+        <button class="btn" id="back-to-create">Torna a Crea Scheda</button>
+    </div>
+
+    <div id="training-session" class="hidden">
+        <h2>Sessione di Allenamento</h2>
+        <div id="current-exercises"></div>
+        <button class="btn" id="finish-set">Finito Serie</button>
+        <button class="btn" id="end-training">Termina Allenamento</button>
+        <div id="timer" class="hidden">
+            <h4>Tempo di Recupero: <span id="time-remaining">0</span> secondi</h4>
+            <button class="btn" id="start-recovery">Riprendi Recupero</button>
+            <button class="btn" id="stop-timer">Ferma Recupero</button>
+        </div>
+    </div>
+</div>
+
+<section id="grafico">
+    <h2>Tracking Settimanale</h2>
+    <div style="width: 80%; max-width: 600px; margin: 0 auto;">
+      <canvas id="myLineChart" width="400"></canvas>
+      <button class="btn" id="add-workout">Aggiungi allenamento</button>
+      <button class="btn" id="remove-training">Rimuovi Ultimo Allenamento</button>
+      <button class="btn" id="rest-day">Giorno di Riposo</button>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

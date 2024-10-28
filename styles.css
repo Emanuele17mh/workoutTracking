@@ -1,0 +1,474 @@
+/* Imposta il box-sizing per garantire che il padding e il bordo siano inclusi nelle dimensioni totali */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; 
+    background-color: #eaeef1; 
+    margin: 0;
+    padding: 10px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #333; 
+    font-size: 16px; /* Aumento della dimensione base del font */
+}
+
+header {
+    width: 100%; 
+    max-width: 500px; /* Limita la larghezza dell'intestazione */
+    text-align: center; 
+    margin-bottom: 15px; 
+}
+
+h1 {
+    font-size: 2.5em; /* Aumento della dimensione del font del titolo */
+    font-weight: bold; /* Grassetto per il titolo */
+    color: #2c3e50; 
+    margin: 0; 
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+    max-width: 400px; /* Larghezza massima per il contenitore principale */
+}
+
+.hidden {
+    display: none;
+}
+
+.form-container {
+    margin-bottom: 10px; 
+    background-color: #ffffff; 
+    padding: 10px; /* Padding ridotto */
+    border-radius: 8px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.2s, box-shadow 0.2s; 
+}
+
+.form-group {
+    margin-bottom: 6px; 
+    width: 100%; /* Mantiene la larghezza al 100% del contenitore */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px; 
+    font-weight: 600; /* Grassetto per le etichette */
+    color: #34495e; 
+    font-size: 1.1em; /* Aumento della dimensione del font per le etichette */
+}
+
+input, select {
+    width: 100%; /* Mantiene gli input al 100% del contenitore */
+    padding: 8px; 
+    border: 1px solid #d1d1d1; 
+    border-radius: 4px; 
+    font-size: 1em; /* Dimensione font aumentata per input e select */
+    transition: border-color 0.3s, box-shadow 0.3s; 
+    margin: 0; /* Rimuove margini aggiuntivi */
+}
+
+input:focus, select:focus {
+    border-color: #007bff; 
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); 
+}
+
+.btn, .nav-btn, .exercise-item-btn {
+    background: linear-gradient(90deg, #007bff, #0056b3); 
+    color: white;
+    padding: 10px; /* Aumentato per un tocco più confortevole */
+    border: none;
+    border-radius: 4px; 
+    cursor: pointer;
+    font-size: 1em; /* Dimensione font uniforme */
+    font-weight: bold; /* Grassetto per i bottoni */
+    transition: background 0.3s, transform 0.1s; 
+    margin: 6px; /* Uniforma il margine */
+}
+
+.clear-btn {
+    background: red; 
+    color: white;
+    padding: 10px; /* Aumentato per un tocco più confortevole */
+    border: none;
+    border-radius: 4px; 
+    cursor: pointer;
+    font-size: 1em; 
+    transition: background 0.3s, transform 0.1s; 
+    margin: 6px; /* Uniforma il margine */
+    font-weight: bold;
+}
+
+.clear-btn:hover {
+    transform: translateY(-2px); 
+}
+
+.btn:hover, .nav-btn:hover, .exercise-item-btn:hover {
+    background: linear-gradient(90deg, #0056b3, #007bff); 
+    transform: translateY(-2px); 
+}
+
+.scheda-container {
+    background-color: #ffffff; 
+    padding: 12px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 20px; 
+    position: relative; /* Aggiunto per il posizionamento dei bottoni */
+    display: flex;
+    flex-direction: column; /* Rende il layout verticale */
+    border: 2px solid #007bff; /* Bordo blu per distinguere la scheda */
+    background-color: #f0f8ff; /* Sfondo chiaro per la scheda */
+}
+
+/* Aggiungi stile specifico per gli esercizi */
+.allenamento-item, .exercise-item {
+    margin: 8px 0; 
+    padding: 10px; /* Aumentato per migliorare l'area cliccabile */
+    background-color: #e6f7ff; /* Sfondo leggermente blu per gli esercizi */
+    border-left: 4px solid #007bff; 
+    border-radius: 4px; 
+    transition: background-color 0.3s; 
+    position: relative; /* Aggiunto per posizionare la "x" */
+    font-size: 1em; /* Dimensione font uniforme per gli esercizi */
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+/* Stile per la "x" per cancellare un esercizio */
+.remove-btn {
+    position: absolute; /* Posiziona la "x" in modo assoluto */
+    top: 10px; /* Posiziona la "x" nella parte superiore dell'elemento */
+    right: 10px; /* Posiziona la "x" a destra dell'esercizio */
+    color: white; /* Colore del testo bianco */
+    border-radius: 50%; /* Forma rotonda */
+    width: 20px; /* Larghezza aumentata per visibilità */
+    height: 20px; /* Altezza aumentata per visibilità */
+    font-size: 0.9em; /* Dimensione del font aumentata */
+    cursor: pointer; /* Cambia il cursore */
+    display: flex; /* Flexbox per centrare il testo */
+    align-items: center; /* Allinea verticalmente */
+    justify-content: center; /* Allinea orizzontalmente */
+    background: red; /* Sfondo rosso */
+    border: 1px solid black;
+    box-shadow: 2px 3px 2px grey;
+}
+
+/* Aggiunta di uno stile per il pulsante "elimina" alla fine della scheda */
+.elimina-btn {
+    background: #dc3545; /* Rosso per il pulsante elimina */
+    margin-top: 10px; /* Spazio sopra il pulsante elimina */
+    align-self: flex-end; /* Allinea il pulsante a destra nella scheda */
+    
+}
+
+/* Assicura che il pulsante "elimina" sia a destra della scheda */
+.scheda-container {
+    display: flex; /* Imposta il contenitore come flex */
+    flex-direction: column; /* Rende il layout verticale */
+    justify-content: flex-start; /* Rende il layout coerente */
+    align-items: flex-start; /* Allinea gli elementi a sinistra */
+}
+
+.delete-schedule-btn {
+    background-color: #dc3545; /* Rosso intenso per il pulsante di eliminazione */
+    color: white; /* Colore del testo bianco */
+    border: none; /* Rimuove il bordo di default */
+    border-radius: 4px; /* Angoli arrotondati */
+    padding: 10px 12px; /* Spaziatura interna aumentata per un tocco più confortevole */
+    font-size: 1em; /* Dimensione del font */
+    cursor: pointer; /* Cambia il cursore in un puntatore */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Transizioni per colore, trasformazione e ombra */
+    margin-left: 8px; /* Margine a sinistra per distanziarlo da altri elementi */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombra leggera per profondità */
+    font-weight: bold;
+}
+
+.delete-schedule-btn:hover {
+    background-color: #c82333; /* Colore di sfondo scuro al passaggio del mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombra più scura al passaggio del mouse */
+    transform: translateY(-2px); /* Leggero sollevamento al passaggio del mouse */
+}
+
+.delete-schedule-btn:active {
+    transform: scale(0.95); /* Effetto di riduzione al clic */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ripristina ombra al clic */
+}
+
+/* Timer e notifiche */
+#timer {
+    margin-top: 10px; 
+    padding: 10px; 
+    border: 1px solid #007bff; 
+    border-radius: 6px; 
+    background-color: #e3f7fd; 
+    animation: fadeIn 0.5s; 
+    text-align: center; 
+    font-size: 1.5em; /* Aumento della dimensione del font del timer */
+}
+
+/* Notifiche */
+.notification {
+    position: fixed;
+    top: 20px; 
+    right: 20px; 
+    background-color: #28a745; 
+    color: white; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    animation: slideIn 0.5s forwards, fadeOut 1.5s forwards 2s; 
+}
+
+#saved-schedules-list {
+    font-weight: bold;
+    list-style: none; /* Rimuove i punti dall'elenco */
+    padding: 20px; /* Padding interno per l'elenco */
+    margin: 20px 0; /* Margine per distanziare l'elenco da altri elementi */
+    background-color: #ffffff; /* Colore di sfondo bianco per chiarezza */
+    border: 2px solid #2196F3; /* Bordo blu per il workout */
+    border-radius: 10px; /* Angoli arrotondati per un aspetto più moderno */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombra per maggiore profondità */
+}
+
+#saved-schedules-list  {
+    margin: 15px 0; /* Margine per distanziare gli esercizi */
+    padding: 20px; /* Padding interno per ogni esercizio */
+    background-color: #f0f8ff; /* Colore di sfondo blu chiaro per ogni esercizio */
+    border-radius: 8px; /* Angoli arrotondati per gli esercizi */
+    border-left: 5px solid #2196F3; /* Barra blu a sinistra per evidenziare */
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Transizioni per effetto hover */
+    text-transform: capitalize;
+}
+
+
+
+h4 {
+    font-size: 24px;                           /* Font equilibrato per visibilità */
+    font-weight: bold;                         /* Grassetto per dare risalto */
+    color: #1C2833;                            /* Blu notte per un look professionale */
+    text-align: left;                          /* Allineamento a sinistra */
+    padding: 14px 20px 14px 40px;              /* Spaziatura bilanciata con sinistra più ampia */
+    margin: 20px 0;                            /* Margine sopra e sotto per separazione */
+    background: linear-gradient(135deg, #E3F2FD, #D6EAF8); /* Sfumatura diagonale per eleganza */
+    border-left: 8px solid #2874A6;            /* Barra laterale più spessa per richiamo visivo */
+    border-radius: 12px;                       /* Arrotondamento completo per un look morbido */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Ombra morbida e profonda per un effetto sollevato */
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 1.5px;                     /* Spaziatura ampia e pulita */
+    text-transform: uppercase;                 /* Maiuscolo per dare importanza */
+    font-family: 'Arial', sans-serif;          /* Font moderno e leggibile */
+}
+
+h4 {
+    font-size: 26px;                           /* Dimensione del font per un impatto maggiore */
+    font-weight: bold;                         /* Grassetto per risalto */
+    color: #2C3E50;                            /* Blu scuro per un aspetto professionale */
+    text-align: center;                        /* Testo centrato per un look armonioso */
+    padding: 16px 30px;                        /* Spaziatura generosa attorno al testo */
+    margin: 25px 0;                            /* Margine superiore e inferiore per separazione */
+    background: linear-gradient(135deg, #EAF2F8, #D6EAF8); /* Sfumatura elegante */
+    border-left: 8px solid #2980B9;            /* Barra laterale blu per accento */
+    border-radius: 12px;                       /* Angoli arrotondati per un aspetto morbido */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Ombra per profondità */
+    position: relative;
+    letter-spacing: 1.5px;                     /* Spaziatura ottimizzata per leggibilità */
+    text-transform: uppercase;                 /* Maiuscolo per importanza */
+    font-family: 'Arial', sans-serif;          /* Font moderno e leggibile */
+}
+
+h4::after {
+    content: '';                               /* Linea decorativa sotto il titolo */
+    position: absolute;
+    bottom: 0;                                 /* Posizionata alla base del titolo */
+    left: 0;
+    width: 100%;                               /* Larghezza completa per enfasi */
+    height: 5px;                               /* Maggiore spessore della linea */
+    background: linear-gradient(90deg, #1A5276, #5DADE2); /* Sfumatura orizzontale */
+    border-radius: 0 0 12px 12px;             /* Arrotondamento inferiore per continuità */
+    opacity: 0.9;                              /* Maggiore opacità per evidenziare la linea */
+}
+
+h5 {
+    font-size: 16px;                          /* Dimensione del font per un aspetto elegante */
+    font-weight: bold;                        /* Grassetto per enfatizzare il titolo */
+    color: #2C3E50;                           /* Colore blu scuro per un aspetto professionale */
+    padding: 8px 15px;                        /* Spaziatura interna per comfort visivo */
+    margin: 12px auto;                        /* Margine per separazione e centrato */
+    text-transform: capitalize;                /* Prima lettera di ogni parola maiuscola */
+    font-family: 'Arial', sans-serif;         /* Font moderno e leggibile */
+    border-bottom: 2px solid #F39C12;         /* Sottolineatura in giallo chiaro */
+    text-align: center;                       /* Testo centrato per armonia visiva */
+    max-width: 150px;                         /* Larghezza massima per maggiore flessibilità */
+    position: relative;                       /* Posizionamento relativo per gestire la sottolineatura */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Ombra leggera per dare profondità al testo */
+}
+
+li{
+    padding: 5px;
+}
+
+.text{
+    padding: 5px;
+    display: table;
+}
+
+#grafico {
+    text-align: center; /* Centra il testo del titolo */
+}
+
+.chart-container {
+    width: 80%;
+    max-width: 600px; /* Larghezza massima del contenitore */
+    margin: 0 auto; /* Centra il contenitore del grafico */
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around; /* Distribuisce i bottoni equamente */
+    margin-top: 20px; /* Spazio sopra i bottoni */
+}
+
+#muscle-groups {
+    position: fixed; /* Posiziona il menu a sinistra */
+    top: 60px; /* Spazio dal top, sotto l'intestazione */
+    left: 0;
+    width: 250px; /* Larghezza del menu */
+    background-color: #ffffff; /* Sfondo bianco per il menu */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Ombra per effetto di profondità */
+    border-radius: 0 10px 10px 0; /* Angoli arrotondati a destra */
+    z-index: 10; /* Assicura che il menu sia sopra altri elementi */
+    overflow-y: auto; /* Abilita lo scroll verticale se necessario */
+    padding: 15px; /* Padding interno */
+    margin-top: 5px; /* Spazio sopra il menu */
+}
+
+#muscle-groups h2 {
+    font-size: 1.4rem; /* Dimensione del font del titolo */
+    margin-bottom: 15px; /* Margine sotto il titolo */
+    font-weight: 600; /* Grassetto per il titolo */
+    color: #007BFF; /* Colore blu per il titolo */
+    text-align: center; /* Centra il titolo */
+    border-bottom: 2px solid #007BFF; /* Sottolineatura per il titolo */
+    padding-bottom: 5px; /* Padding sotto il titolo */
+}
+
+#muscle-groups ul {
+    list-style-type: none; /* Rimuove i punti della lista */
+    padding: 0; /* Rimuove padding predefiniti */
+}
+
+#muscle-groups li {
+    margin: 10px 0; /* Spazio tra gli elementi della lista */
+}
+
+#muscle-groups a {
+    text-decoration: none; /* Rimuove la sottolineatura */
+    color: #333; /* Colore del testo */
+    font-size: 1rem; /* Dimensione del font aumentata */
+    font-weight: bold;
+    padding: 8px 12px; /* Padding per gli elementi della lista */
+    border-radius: 5px; /* Angoli arrotondati per i collegamenti */
+    display: block; /* Rende l'intero blocco cliccabile */
+    transition: background-color 0.3s, color 0.3s; /* Transizione per il cambio di colore */
+}
+
+#muscle-groups a:hover {
+    background-color: #007BFF; /* Colore blu al passaggio del mouse */
+    color: white; /* Colore del testo bianco al passaggio del mouse */
+}
+
+#muscle-groups a.active {
+    background-color: #0056b3; /* Colore blu scuro per il collegamento attivo */
+    color: white; /* Colore del testo bianco per il collegamento attivo */
+    font-weight: 600; /* Grassetto per il testo attivo */
+}
+
+#muscle-groups li:last-child {
+    margin-bottom: 0; /* Rimuove margine dall'ultimo elemento */
+}
+
+/* Stile per il pulsante del menu */
+.nav-btn {
+    background-color: #007BFF; /* Colore di sfondo blu */
+    color: white; /* Colore del testo bianco */
+    border: none; /* Rimuove il bordo */
+    border-radius: 5px; /* Angoli arrotondati */
+    padding: 10px 15px; /* Padding per il pulsante */
+    cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+    font-size: 0.9rem; /* Dimensione del font più piccola */
+    transition: background-color 0.3s; /* Transizione al passaggio del mouse */
+    margin-right: 10px; /* Margine a destra */
+    margin-bottom: 10px; /* Spazio sotto il pulsante */
+}
+
+.nav-btn:hover {
+    background-color: #0056b3; /* Colore scuro al passaggio del mouse */
+}
+
+.form-container {
+    background-color: #f9f9f9; /* Sfondo chiaro per il contenitore del modulo */
+    padding: 15px; /* Padding interno */
+    border-radius: 10px; /* Angoli arrotondati */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombra per effetto di profondità */
+    margin-top: 10px; /* Spazio sopra il contenitore del modulo */
+}
+
+.scheda-container {
+    background-color: #f9f9f9; /* Colore di sfondo per la scheda */
+    padding: 15px; /* Padding interno */
+    border-radius: 10px; /* Angoli arrotondati */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombra per effetto di profondità */
+    margin-top: 10px; /* Spazio sopra il contenitore della scheda */
+}
+
+.schedule-buttons {
+    display: flex; /* Usa flexbox per allineare i pulsanti */
+    justify-content: space-between; /* Spazia i pulsanti uniformemente */
+}
+
+
+
+
+/* Animazioni */
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px); 
+        opacity: 0; 
+    }
+    to {
+        transform: translateY(0); 
+        opacity: 1; 
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1; 
+    }
+    100% {
+        opacity: 0; 
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0; 
+    }
+    to {
+        opacity: 1; 
+    }
+}
+
+ /* Stili per il canvas */
+ canvas {
+    max-width: 600px;
+    margin: 0 auto;
+}
